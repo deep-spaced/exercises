@@ -10,7 +10,7 @@ var users = [
   { id: 3, admin: true }
 ];
 
-var admin = users.find(function(user) { return user.admin === true });
+var admin = users.find(function(user) { return user.admin === true; });
 
 /**
  * What's Your Balance?
@@ -49,6 +49,16 @@ Hint: the hard part of this is figuring out the name of the proeprty on the crit
 */
 
 function findWhere(array, criteria) {
-
-
+  var properties = Object.keys(criteria);
+  // Return the first ladder matching the criteria
+  return ladders.filter(function(ladder) {
+    // Assume this ladder matches.
+    var found = true;
+    // Loop through all the properties.
+    properties.forEach(function(property) {
+      found = found && ladder[property] === criteria[property];
+    });
+    // Return flag.
+    return found;
+  })[0];
 }
